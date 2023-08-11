@@ -22,7 +22,15 @@ void loop() {
   Pyro::update();
   IR.update();
   vibrator.update();
-  if (BLE_System::deviceConnected) {
-    BLE_System::write(String(random(1, 30)));
+  // if (BLE_System::deviceConnected) {
+  //   BLE_System::write(String(random(1, 30)));
+  // }
+
+  static uint32_t start = millis();
+  if (millis() - start > 500) {
+    start = millis();
+    IR.show();
+    vibrator.show();
+    Pyro::show();
   }
 }

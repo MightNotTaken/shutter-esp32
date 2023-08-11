@@ -29,6 +29,11 @@ namespace Pyro {
     return C;
   }
 
+  void show() {
+    Serial.print("Temperature: ");
+    Serial.println(C);
+  }
+
   void setUpdationInterval(uint32_t duration) {
     updationDuration = duration;
   }
