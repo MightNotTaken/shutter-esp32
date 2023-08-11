@@ -10,6 +10,9 @@ public:
     this->count = 0;
     this->GPIO = GPIO;
     this->threshold = threshold;
+  }
+
+  void begin() {
     pinMode(this->GPIO, INPUT);
   }
 

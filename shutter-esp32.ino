@@ -1,4 +1,3 @@
-#include "mac.h"
 #include "database.h"
 #include "BLE.h"
 #include "pyro.h"
@@ -11,22 +10,24 @@ Sensor vibrator(VIBRATOR_PIN);
 
 void setup() {
   Serial.begin(115200);
-  MAC::load();
   Database::begin();
   BLE_System::begin();
   Pyro::begin();
+  IR.begin();
+  vibrator.begin();
 }
 
+static uint32_t start = millis();
 void loop() {
   BLE_System::checkConnection();
   Pyro::update();
   IR.update();
   vibrator.update();
-  // if (BLE_System::deviceConnected) {
-  //   BLE_System::write(String(random(1, 30)));
-  // }
+  if (BLE_System::deviceConnected) {
+    BLE_System::write(String(random(1, 30)));
+  }
+  
 
-  static uint32_t start = millis();
   if (millis() - start > 500) {
     start = millis();
     IR.show();
