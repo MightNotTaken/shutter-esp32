@@ -28,10 +28,13 @@ void loop() {
   }
   
 
-  if (millis() - start > 500) {
-    start = millis();
-    IR.show();
-    vibrator.show();
-    Pyro::show();
+  if (IR.available()) {
+    Serial.println("IR sensor");
+    IR.reset();
+  }
+
+  if (vibrator.available()) {
+    Serial.println("IR sensor");
+    vibrator.reset();
   }
 }
